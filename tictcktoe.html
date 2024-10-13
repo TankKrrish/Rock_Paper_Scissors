@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Sixtyfour+Convergence&display=swap');
+        
+        body{
+            background-image: url(background.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            color: white;
+            font-family:"Sixtyfour Convergence", sans-serif;
+            text-align: center;
+        }
+        .title{
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            padding-bottom: 30px;
+        }
+        .move1{
+            height: 70px;
+            cursor: pointer;
+            background-image: url(rock.png);
+            background-size: 100px 90px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-position-y: top;
+        }
+        .move1:hover{
+            background-image: url(rock.jpeg);
+           background-size: 110px 110px;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: 200ms;
+        }
+        .move2{
+            height: 70px;
+            cursor: pointer;
+            background-image: url(paper.png);
+            background-size: 100px 90px;
+            background-repeat: no-repeat;
+            background-position: center;
+            /* background-position-y: top; */
+        }
+        .move2:hover{
+            background-image: url(paper.jpeg);
+           background-size: 110px 111px;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: 200ms;
+        }
+        .move3{
+            height: 70px ;
+            cursor: pointer;
+            background-image: url(scissors.png);
+            background-size: 100px 80px;
+            background-repeat: no-repeat;
+            background-position: center;
+            /* background-position-y: top; */
+        }
+        .move3:hover{
+            background-image: url(katar.jpeg);
+           background-size: 111px 111px;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: 200ms;
+        }
+        .move-button{
+            background-color: transparent;
+            margin: 6px;
+            border: 3px solid lightcoral;
+            
+            width: 120px;
+            height: 120px;
+            
+        }
+        /* .reset-button{
+           cursor: pointer;
+            background-color: transparent;
+        } */
+        .result{
+            font-size: 30px;
+            font-weight: bold;
+            align-items: center;
+            
+        }
+        /* From Uiverse.io by catraco */ 
+.btn-class-name {
+  --primary: 255, 90, 120;
+  --secondary: 150, 50, 60;
+  width: 60px;
+  height: 50px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  outline: 10px solid rgb(var(--primary), .5);
+  border-radius: 100%;
+  position: relative;
+  transition: .3s;
+}
+
+.btn-class-name .back {
+  background: rgb(var(--secondary));
+  border-radius: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-class-name .front {
+  background: linear-gradient(0deg, rgba(var(--primary), .6) 20%, rgba(var(--primary)) 50%);
+  box-shadow: 0 .5em 1em -0.2em rgba(var(--secondary), .5);
+  border-radius: 100%;
+  position: absolute;
+  border: 1px solid rgb(var(--secondary));
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: inherit;
+  transform: translateY(-15%);
+  transition: .15s;
+  color: rgb(var(--secondary));
+}
+
+.btn-class-name:active .front {
+  transform: translateY(0%);
+  box-shadow: 0 0;
+}
+    </style>
+</head>
+<body>
+    <p class=" title">
+        ROCK PAPER SCISSIORS PROJECTS
+    </p>
+    <p class="js-result">Play Your Move:</p>
+    
+    <button onclick="krrish('rock');"class="move-button move1">
+        <!-- <img src="rock.png" class="move1"> -->
+    </button>
+    <button onclick="krrish('paper');"class="move-button move2">   
+        <!-- <img src="paper.png" class="move2"> -->
+    </button>
+    <button onclick="krrish('scissors');"class="move-button move3">
+        <!-- <img src="scissors.png" class="move3"> -->
+    </button>
+    <p class="me"style="padding-bottom: 30px;">computer move is: </p>
+    <p class="us"style="padding-bottom: 30px;">your move is: </p>
+    
+    <p class="js-score"style="padding-bottom: 30px;">win=0,lose=0,tie=0</p>
+    
+        <button onclick="
+        obj.win=0;
+        obj.lose=0;
+        obj.tie=0;
+        localStorage.removeItem('score');
+        alert('win='+obj.win+'lose='+obj.lose+'tie='+obj.tie);
+        document.querySelector('.js-score').innerHTML='win= '+obj.win+'lose= '+obj.lose+'tie= '+obj.tie
+        document.querySelector('.js-result').innerHTML='Play Your Move:';"   
+        class="btn-class-name">
+          <span class="back"></span>
+          <span class="front"></span>
+        </button>
+    
+    <script>
+        
+        let obj=JSON.parse(localStorage.getItem('score'));
+        if(obj===null){
+            obj={
+                win:0,
+                lose:0,
+                tie:0
+            };
+        }
+        let value=0;
+        let computer=0;
+        let user=0;
+        let result=0;
+        let yourmove=0;
+        function krrish(user){
+        value=Math.random()*100;
+        if(value>=0 && value<=33.33){
+            computer='rock';
+            if(user==='rock'){
+                result='tie';
+            }
+            else if(user=='paper'){
+                result='win';
+            }
+            else if(user=='scissors'){
+                result='lose';  
+            }
+            if(result==='win'){
+            obj.win+=1;
+            
+        }else if(result==='lose'){
+            obj.lose+=1;
+            
+        }else if(result==='tie'){
+            obj.tie+=1;
+            
+
+        }
+        }else if(value>=33.33 && value<=66.33){
+            computer='paper';
+            if(user==='paper'){
+                result='tie';
+            }
+            else if(user=='rock'){
+                result='lose';
+            }
+            else if(user=='scissors'){
+                result='win';  
+            }
+            if(result==='win'){
+            obj.win+=1;
+        }else if(result==='lose'){
+            obj.lose+=1;
+        }else if(result==='tie'){
+            obj.tie+=1;
+        }
+
+        }
+    else if(value>=66.33 && value<=100){
+            computer='scissors';
+            if(user==='scissors'){
+                result='tie';
+            }
+            else if(user=='rock'){
+                result='win';
+            }
+            else if(user=='paper'){
+                result='lose';  
+            }
+            if(result==='win'){
+            obj.win+=1;
+        }else if(result==='lose'){
+            obj.lose+=1;
+        }else if(result==='tie'){
+            obj.tie+=1;
+        }
+    }
+        localStorage.setItem('score',JSON.stringify(obj));
+        document.querySelector('.js-score').innerHTML=`win=${obj.win} lose=${obj.lose} tie=${obj.tie}`
+        document.querySelector('.js-result').innerHTML=result;  
+        document.querySelector('.us').innerHTML=`your move is : ${user} `;
+        document.querySelector('.me').innerHTML=`computer move is : ${computer}`;
+        }
+    </script>
+</body>
+</html>
