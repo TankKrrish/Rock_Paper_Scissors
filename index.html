@@ -7,15 +7,23 @@
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Sixtyfour+Convergence&display=swap');
         
-        body{
-/*             background-image: url(background.png); */
-            background-color: black;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            color: white;
-            font-family:"Sixtyfour Convergence", sans-serif;
-            text-align: center;
-        }
+    body {
+    background-image: url('background.png'); /* Desktop background */
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    font-family: "Sixtyfour Convergence", sans-serif;
+    text-align: center;
+}
+
+/* For smaller screens (like phones) */
+@media only screen and (max-width: 768px) { /* 768px is a common breakpoint for tablets and phones */
+    body {
+        background-image: url('background-2m.png'); /* Phone background */
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
         .title{
             font-size: 30px;
             font-weight: bold;
